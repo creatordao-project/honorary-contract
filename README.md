@@ -1,8 +1,6 @@
-# Basic Sample Hardhat Project
+# CreatorDAO Honorary's contract
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
-
-Try running some of the following tasks:
+## dev
 
 ```shell
 npx hardhat accounts
@@ -13,3 +11,23 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+## metadata
+
+```json
+{
+  "image": "",
+  "external_url": "https://nft.creatordao.cc",
+  "description": "The CreatorDAO Honorary is a collection dedicated to be a playground for artists and their creativity.",
+  "name": "CreatorDAO Honorary",
+  "animation_url": "https://animation.dnudao.xyz/one?tokenid=0",
+  "attributes": [
+    {
+      "trait_type": "Creator",
+      "value": ""
+    }
+  ]
+}
+
+```
+
+## testnet&mainnet
