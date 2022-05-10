@@ -19,7 +19,7 @@ contract Honorary is ERC721, ERC721URIStorage, Ownable {
         _setTokenURI(tokenId, uri);
     }
 
-    function batchMint(uint256 num, string memory baseUri) external onlyOwner {
+    function batchMint(uint256 num, string memory baseURI) external onlyOwner {
         for (uint256 index = 0; index < num; index++) {
             _tokenIdCounter.increment();
             uint256 tokenId = _tokenIdCounter.current();
@@ -27,12 +27,12 @@ contract Honorary is ERC721, ERC721URIStorage, Ownable {
             _safeMint(msg.sender, tokenId);
             _setTokenURI(
                 tokenId,
-                string(abi.encodePacked(baseUri, Strings.toString(tokenId)))
+                string(abi.encodePacked(baseURI, Strings.toString(tokenId)))
             );
         }
     }
 
-    function update(uint256 tokenId, string memory uri) external onlyOwner {
+    function updateURI(uint256 tokenId, string memory uri) external onlyOwner {
         _setTokenURI(tokenId, uri);
     }
 
