@@ -12,16 +12,34 @@ contract Honorary is ERC721, ERC721URIStorage, Ownable {
 
     constructor() ERC721("CreatorDAO Honorary", "Honorary") {}
 
-    function newItem( string memory uri) public onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
+    function mint(string memory uri) external onlyOwner {
         _tokenIdCounter.increment();
+        uint256 tokenId = _tokenIdCounter.current();
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, uri);
     }
 
-    // The following functions are overrides required by Solidity.
+    function batchMint(uint256 num, string memory baseUri) external onlyOwner {
+        for (uint256 index = 0; index < num; index++) {
+            _tokenIdCounter.increment();
+            uint256 tokenId = _tokenIdCounter.current();
 
-    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+            _safeMint(msg.sender, tokenId);
+            _setTokenURI(
+                tokenId,
+                string(abi.encodePacked(baseUri, Strings.toString(tokenId)))
+            );
+        }
+    }
+
+    function update(uint256 tokenId, string memory uri) external onlyOwner {
+        _setTokenURI(tokenId, uri);
+    }
+
+    function _burn(uint256 tokenId)
+        internal
+        override(ERC721, ERC721URIStorage)
+    {
         super._burn(tokenId);
     }
 
